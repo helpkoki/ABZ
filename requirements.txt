@@ -1,0 +1,23 @@
+# requirements.txt
+# Install everything:  pip install -r requirements.txt
+#
+# Note: only install what you actually use.
+# If you're using EasyOCR, you don't need manga-ocr, and vice versa.
+
+# ── Core (always needed) ─────────────────────────────────────────────────────
+Pillow>=10.0
+PyYAML>=6.0
+requests>=2.31       # for Ollama HTTP calls
+numpy>=1.24
+
+# ── Bubble Detection ─────────────────────────────────────────────────────────
+opencv-python>=4.8   # OpenCVDetector
+
+# ── OCR (pick one or install all) ────────────────────────────────────────────
+easyocr>=1.7         # EasyOCREngine  — best for Indonesian / multi-language
+# manga-ocr>=0.1.9   # MangaOCREngine — best for Japanese
+# pytesseract>=0.3   # TesseractEngine — also needs tesseract binary installed
+
+# ── Translation (Ollama needs no pip package — it's a local server) ──────────
+# argostranslate>=1.9  # ArgosTranslator — fully offline alternative
+# deepl>=1.16          # DeepLTranslator  — needs a free API key

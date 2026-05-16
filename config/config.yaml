@@ -1,0 +1,46 @@
+# config/config.yaml
+# ==================
+# This is the ONE file you edit to swap modules.
+# Change a value → different engine loads. No code changes needed.
+
+# ── Which modules to use ──────────────────────────────────────────────────────
+modules:
+  bubble_detector: opencv       # options: opencv | manual
+  ocr:             easyocr      # options: easyocr | mangaocr | tesseract
+  translator:      ollama       # options: ollama | argos | deepl
+  text_overlay:    pillow       # options: pillow
+
+# ── Language settings ─────────────────────────────────────────────────────────
+language:
+  source: auto    # 'auto' lets the OCR/translator detect it, or use 'ja', 'id', etc.
+  target: en
+
+# ── Module-specific options ───────────────────────────────────────────────────
+
+detector_options:
+  min_area: 500          # ignore regions smaller than this (pixels²)
+  padding: 4             # extra pixels to pad around each detected bubble
+
+ocr_options:
+  languages: ["id", "en", "ja"]   # EasyOCR language list (order = priority)
+  gpu: false                       # set true if you have a CUDA GPU
+
+translator_options:
+  model:    llama3.2               # Ollama model name (must be pulled already)
+  base_url: http://localhost:11434 # Ollama server address
+  timeout:  30                     # seconds before giving up on a request
+
+overlay_options:
+  font_path: null          # null = use bundled comic font; or set absolute path to .ttf
+  font_size: 14            # base font size in pixels (auto-scales with bubble size)
+  text_color: [0, 0, 0]    # RGB
+  bg_color: [255, 255, 255] # RGB — colour used to white-out the original text
+
+# ── Paths ─────────────────────────────────────────────────────────────────────
+paths:
+  input_dir:  input/
+  output_dir: output/
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+logging:
+  level: INFO    # DEBUG | INFO | WARNING | ERROR
